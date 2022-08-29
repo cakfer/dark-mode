@@ -1,0 +1,310 @@
+/* Tutorial CSS starts here */
+:root {
+ --bg:#F4F0EB;
+ --glare:#fff;
+ --shade:#E6DCD1;
+ --text:#011427;
+ --btn:#ACCDD7;
+  --radio:#000;
+ --btn-border:transparent;
+}
+
+
+@media (prefers-color-scheme: dark) { 
+  :root {
+    --bg:#444;
+    --glare:#333;
+    --shade:#222;
+    --text:white;
+    --btn:#5F0F40;
+    --radio:#fff;
+    --btn-border:transparent;
+  }
+}
+
+#dark:checked ~ *{
+  --bg:#444;
+  --glare:#333;
+  --shade:#222;
+  --text:white;
+  --btn:#5F0F40;
+  --radio:#fff;
+  --btn-border:transparent; 
+}
+
+@media (prefers-color-scheme: dark) {
+  #dark:checked ~ *{
+    --bg:#F4F0EB;
+    --glare:#fff;
+    --shade:#E6DCD1;
+    --text:#011427;
+    --btn:#ACCDD7;
+    --radio:#000;
+    --btn-border:transparent;
+  }
+}
+
+#blue:checked ~ *{
+  --bg:#ACCBE1;
+  --glare:#CEE5F2;
+  --shade:#7C98B3;
+  --btn:#FAB3A9;
+  --text:#000;
+  --radio:#000;
+  --btn-border:transparent;
+}
+
+#red:checked ~ *{
+	--bg:#fdb1b8;
+  --shade:#fd8189;
+  --glare:#f3d2d5;
+	--text:black;
+  --btn:#F3CA40;
+  --radio:#000;
+  --btn-border:transparent;
+}
+
+#high-contrast:checked ~ *{
+	--bg:#000;
+  --glare:#000;
+  --shade:#000;
+	--text:#fff;
+  --btn:#000;
+  --radio:#0f0;
+  --btn-border:#ff0;
+}
+
+
+.color-scheme-wrapper {
+    min-height:100vh;
+    padding:1rem;
+    background:#F4F0EB;
+    background:var(--bg);
+    color:#000;
+    color:var(--text);
+}
+
+.color-scheme-button,
+.color-scheme-label {
+	display:none;
+}
+
+@supports(--css:custom-properties) {
+	.color-scheme-button,
+	.color-scheme-label {
+		display:inline;
+	}
+}
+
+@media(-ms-high-contrast:active) {
+	.color-scheme-button,
+	.color-scheme-label {
+		display:none;
+	}
+}
+
+
+/* Hide based on prefers-color-scheme  */
+
+.light-mode-hide {
+  display:none;
+}
+
+@media (prefers-color-scheme: dark) { 
+  .light-mode-hide {
+    display:block
+  }
+  
+  .dark-mode-hide {
+    display:none;
+  }
+}
+
+
+
+
+
+
+
+/* Tutorial CSS ends here */
+/* The rest of the css is to make this codepen look nice */
+body {
+  margin:0;
+  padding:0;
+  font-size:18px;
+  font-family:monospace;
+}
+
+input[type=radio], input[type=checkbox]{
+  position:absolute;
+  opacity: 0.00001;
+}
+
+.color-scheme-dropdown {
+  background:#E6DCD1;
+  background:var(--shade);
+  border-radius:6px;
+  display:inline-flex;
+  flex-direction:column;
+  box-sizing:border-box;
+  border:2px solid var(--btn-border);
+  
+}
+
+.color-scheme-dropdown-inner {
+  display:none;
+  padding:.8rem;
+  border-top:solid 2px var(--btn-border);
+}
+
+#show-color-schemes:checked ~ .color-scheme-dropdown-inner {
+  display:block;
+}
+
+.hide {
+display:none
+}
+
+#show-color-schemes:checked + label .show {
+  display:none;
+}
+
+#show-color-schemes:checked + label .hide  {
+  display:inline;
+}
+
+#show-color-schemes + label {
+  display:inline-flex;
+  padding: .8rem 1.2rem;
+  align-items: center;
+  border-radius: 4px;
+  user-select: none;
+}
+
+#show-color-schemes + label:hover {
+  background:#F4F0EB;
+  background:var(--bg);
+}
+
+
+#show-color-schemes + label:active {
+        transform: translateY(1px);
+    }
+
+.icon-btn {
+ 
+  background:#ACCDD7;
+  background: var(--btn);
+  box-shadow: 0 2px rgba(0,0,0,.2);
+  height: 2rem;
+  width:2rem;
+  border-radius: 2rem;
+  border: solid 2px var(--btn-border);
+  position: relative;
+  color: #011427;
+  color: var(--text);
+  margin-left:1rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.icon {
+  position: static;
+  width: .5rem;
+  height: .5rem;
+  transform: rotate(135deg);
+  
+  border-top:2px solid #011427;
+  border-right: 2px solid #011427;
+  
+  border-top: 2px solid var(--text);
+  border-right: 2px solid var(--text);
+  margin-top: -2px;
+}
+
+#show-color-schemes:checked + label .icon {
+  transform: rotate(-45deg);
+  margin-top: 3px;
+}
+
+.color-scheme-label {
+  display:flex;
+  padding:1rem;
+  align-items:center;
+  justify-content:space-between;
+  border-radius:6px;
+  background:#F4F0EB;
+  background:var(--bg);
+  box-sizing:border-box;
+  border:solid 2px transparent;
+}
+
+.color-scheme-label + .color-scheme-label {
+  margin-top:.42rem;
+}
+
+.color-scheme-label:hover {
+  
+  background:#fff;
+  background:var(--glare);
+  border:solid 2px var(--btn-border);
+}
+
+.color-scheme-label:after {
+  content:'';
+  display:flex;
+  height:1rem;
+  width:1rem;
+  border-radius:2rem;
+  
+  border:solid 2px #000;
+  border:solid 2px var(--radio);
+  
+  box-shadow:0 2px #E6DCD1, inset 0 2px #E6DCD1;
+  box-shadow:0 2px var(--shade), inset 0 2px var(--shade);
+}
+
+#blue:checked ~ .color-scheme-wrapper #blue-label:after,
+#red:checked ~ .color-scheme-wrapper #red-label:after,
+#light:checked ~ .color-scheme-wrapper #light-label:after,
+#dark:checked ~ .color-scheme-wrapper #dark-label:after,
+#high-contrast:checked ~ .color-scheme-wrapper #high-contrast-label:after {
+
+   box-shadow:
+    0 2px #E6DCD1, 
+    inset 0 2px #E6DCD1,
+    inset 0 0 0 3px #F4F0EB, 
+    inset 0 0 0 1rem #000;
+  
+  box-shadow:
+    0 2px var(--shade), 
+    inset 0 2px var(--shade),
+    inset 0 0 0 3px var(--bg), 
+    inset 0 0 0 1rem var(--radio);
+}
+
+h1, p {
+  
+  line-height:2;
+  max-width:50rem;
+  
+}
+
+a {
+  
+  color:#011427;
+  color:var(--text);
+  
+  background:#ACCDD7;
+  background:var(--btn);
+  
+  outline:dotted 1px #011427;
+  outline:dotted 1px var(--text);
+  outline-offset:0;
+  text-decoration:none;
+}
+
+a:hover {
+    outline-style:solid;
+}
